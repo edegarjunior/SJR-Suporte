@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport Tag CRÍTICA para Mobile/Stories -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SJR Suporte - Stories Mode</title>
+    
+    <!-- Carregamento do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Variáveis de Tema */
+        :root {
+            --neon-blue: #00ffff;
+            --neon-pink: #ff00ff;
+            --dark-bg: #0d0d1a;
+            --yellow-neon: #ffff00;
+        }
+
+        /* CONFIGURAÇÃO PRINCIPAL: 100% da tela para o modo Stories */
+        body {
+            background-color: var(--dark-bg);
+            /* Usando Press Start 2P com fallback seguro */
+            font-family: 'Press Start 2P', 'Roboto Mono', monospace; 
+            
+            /* Altura total e centralização absoluta para Stories */
+            min-height: 100dvh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            overflow: hidden; /* Garante que não haja scroll acidental */
+            position: relative;
+        }
+
+        /* CONTAINER: O "Card" que imita o Stories */
+        .story-container {
+            width: 90vw;
+            max-width: 450px;
+            height: 98dvh; /* Ocupa quase 100% da altura da tela */
+            
+            /* Estilização Neon */
+            background: linear-gradient(145deg, rgba(13, 13, 26, 0.95), rgba(18, 18, 30, 0.95));
+            border: 4px solid var(--neon-blue);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.5), inset 0 0 20px rgba(255, 0, 255, 0.3);
+            
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribui header, main e footer */
+            border-radius: 2rem;
+            z-index: 10;
+            overflow-y: hidden; /* Não permite scroll no container */
+            animation: containerBorderPulse 3s ease-in-out infinite alternate;
+        }
+        
+        /* Estilos de Animação */
+        @keyframes containerBorderPulse {
+            from { box-shadow: 0 0 15px rgba(0, 255, 255, 0.6), inset 0 0 10px rgba(255, 0, 255, 0.4); }
+            to { box-shadow: 0 0 30px rgba(0, 255, 255, 0.9), inset 0 0 15px rgba(255, 0, 255, 0.6); }
+        }
+
+        .neon-text-blue {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .neon-text-pink {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .neon-glow-btn {
+            background-color: var(--neon-pink);
+            color: var(--dark-bg);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--neon-pink);
+            text-decoration: none !important;
+            display: block;
+        }
+        
+        .free-highlight {
+            animation: freeGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes freeGlow {
+            from { box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); }
+            to { box-shadow: 0 0 20px rgba(255, 255, 0, 0.8), 0 0 30px rgba(255, 255, 0, 0.4); }
+        }
+
+        /* Ajuste do Título para não quebrar no modo Stories/Mobile */
+        .main-title {
+            font-size: min(10vw, 3rem); /* Usa o menor valor entre 10% da viewport ou 3rem */
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Garante o espaço de segurança do botão (barra de navegação inferior do celular) */
+        .footer-safe-area {
+            padding-bottom: calc(1rem + env(safe-area-inset-bottom)); 
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    </style>
+</head>
+<body>
+
+    <div id="storyApp" class="story-container">
+        
+        <!-- HEADER -->
+        <header class="flex flex-col items-center pt-8">
+            <h1 class="main-title font-extrabold uppercase tracking-widest text-white neon-text-blue text-center leading-none">SJR SUPORTE</h1>
+            <!-- Reduzido para caber perfeitamente -->
+            <p class="text-xs sm:text-sm mt-1 font-medium neon-text-pink text-center">SUPORTE ESPECIALIZADO NO LOCAL</p>
+        </header>
+
+        <!-- MAIN CONTENT: Usa flex-grow para ocupar o espaço central -->
+        <main class="text-center flex-grow flex flex-col justify-center py-4">
+            
+            <!-- Título Principal Ajustado -->
+            <h2 class="text-3xl sm:text-4xl font-black uppercase leading-tight text-white mb-6">
+                <span class="neon-text-blue block leading-none">SERVIÇOS E</span> 
+                <span class="block leading-none">SUPORTE NO LOCAL</span>
+            </h2>
+
+            <div class="space-y-3">
+                <div class="text-sm font-medium text-left mx-auto max-w-xs space-y-2">
+                    <h3 class="text-sm font-bold uppercase neon-text-blue text-center mb-2">O QUE FAZEMOS:</h3>
+                    
+                    <div class="flex items-center text-white p-2 rounded-md bg-white/5 border border-white/20 text-xs">
+                        <span class="mr-3 text-xl neon-text-blue">✓</span> Formatação de Sistemas
+                    </div>
+                    
+                    <div class="flex items-center text-white p-2 rounded-md bg-white/5 border border-white/20 text-xs">
+                        <span class="mr-3 text-xl neon-text-blue">✓</span> Recuperação de Arquivos
+                    </div>
+
+                    <div class="flex items-center text-white p-2 rounded-md bg-white/5 border border-white/20 text-xs">
+                        <span class="mr-3 text-xl neon-text-blue">✓</span> Manutenção e muito mais!
+                    </div>
+                </div>
+                
+                <!-- Destaque GRÁTIS -->
+                <div class="p-3 bg-yellow-400 bg-opacity-20 rounded-xl shadow-2xl border border-yellow-300 transform scale-105 mt-4 free-highlight mx-auto max-w-xs">
+                    <p class="text-sm font-black uppercase text-yellow-300 text-shadow-lg">
+                        AVALIAÇÃO NO LOCAL? <br>
+                        <span class="text-xl neon-text-blue text-shadow-xl block mt-1">É GRÁTIS!</span>
+                    </p>
+                    <p class="text-xs mt-1 text-white text-opacity-70">(Sem taxa de deslocamento para avaliação)</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER: Fixo no final, respeitando a margem de segurança do celular -->
+        <footer class="text-center pt-4 footer-safe-area"> 
+            <a id="ctaLink" href="https://wa.me/5547984869711" target="_blank" 
+               class="block w-full text-center py-4 rounded-full neon-glow-btn transition duration-300 transform hover:scale-105 text-sm">
+                CHAMAR AGORA! (47) 98486-9711
+            </a>
+            <p class="text-xs mt-3 text-white text-opacity-50">Atendimento imediato via WhatsApp.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
+
+
